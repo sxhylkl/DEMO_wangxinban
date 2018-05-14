@@ -1,0 +1,61 @@
+section {
+    >div {
+        width: 100%;
+    }
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td,th {
+        padding: .5rem;
+        border: 1px solid #aaa;
+        text-align: center;
+        height: 3rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+#wxb_list_table_container {
+    td:nth-of-type(2) {
+        text-decoration: underline;
+        color: blue;
+    }
+}
+
+#wxb_list_detail_container {
+    
+    #wxb_list_detail_title {
+        text-align: center;
+        font-size: 2rem;
+        padding: 1rem 0;
+    }
+}
+
+
+.wxb-list-status-red {
+    height: 1.2rem;
+    background: rgb(185, 0, 0);
+}
+.wxb-list-status-yellow {
+    height: 1.2rem;
+    background: yellow;
+}
+.wxb-list-status-green {
+    height: 1.2rem;
+    background: rgb(10, 192, 10);
+}
+
+#wxb_list_detail_back {
+    font-size: 1rem;
+    padding: 1rem;
+    &:before {
+        content: '\21E6';
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}

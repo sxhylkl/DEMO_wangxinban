@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <base target="_blank" />
+    <title>互联网有害信息监控平台 - 综合平台</title>
+    <link rel="stylesheet" href="./stylesheet/common.css">
+    <link rel="stylesheet" href="./stylesheet/layout.css">
+    <link rel="stylesheet" href="./stylesheet/home.css">
+</head>
+<body>
+    <header>
+        <div>
+            <img src="/imgs/qiniulogo.png" alt="">
+            <p>互联网有害信息监控平台</p>
+        </div>
+        <div id="wa_home_navbar">
+            <a class="wa-home-nav-selected" href="/home.html" target="_self">综合信息平台</a>
+            <a href="/list.html" target="_self">用户列表</a>
+            <!-- <a href="/detail.html" target="_self">用户详情</a> -->
+            <a href="/about.html" target="_self">产品功能流程图</a>
+            <a href="/config.html" target="_self">配置</a>
+        </div>
+    </header>
+    
+    <section>
+        <p class="wxb-home-title">当日入网网站有害数据统计信息：</p>
+        <div class="wxb-home-row">
+            <div>
+                <table id="wxb_home_static_table">
+                    <tr><td>当日所有有害信息数量：</td><td></td><td>条</td></tr>
+                    <tr><td>当日所有未处理有害信息数量：</td><td></td><td>条</td></tr>
+                    <tr><td>当日所有已处理有害信息数量：</td><td></td><td>条</td></tr>
+                    <tr><td>当日所有健康网站数量：</td><td></td><td>个</td></tr>
+                    <tr><td>当日所有黄色警告网站数量：</td><td></td><td>个</td></tr>
+                    <tr><td>当日所有红色警告网站数量：</td><td></td><td>个</td></tr>
+                </table>
+            </div>
+            <div id="wxb_home_piechart"></div>
+        </div>
+        <hr />
+
+        <p class="wxb-home-title">详细统计信息：</p>
+        <div class="wxb-home-row">
+            <div id="wxb_home_rankbar"></div>
+            <div id="wxb_home_stackbar"></div>
+        </div>
+        <hr />
+
+
+        <p class="wxb-home-title">设备运行情况：</p>
+        <div class="wxb-home-row">
+            <div id="wxb_home_dashboard"></div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>@copy right reserved by Qiniu</p>
+    </footer>
+
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    
+    <script src="./javascript/config.js"></script>
+    <script src="./javascript/home.js"></script>
+
+</body>
+</html>

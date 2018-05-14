@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <link rel="stylesheet" href="./stylesheet/common.css">
+    <link rel="stylesheet" href="./stylesheet/index.css">
+    <!-- <link rel="stylesheet" href="./libs/css/bootstrap.min.css"> -->
+</head>
+<body>
+    <header>
+        <img src="/imgs/qiniulogo.png" alt="">
+    </header>
+    <section>
+        <div>
+            <p>监控平台入网网站列表</p>
+            <ul>
+                <li><a id="wxb_index_user1" href="/client.html" target="_blank">XX 网站</a></li>
+                <li><a id="wxb_index_user2" href="/client.html" target="_blank">YY 网站</a></li>
+                <li><a id="wxb_index_user3" href="/client.html" target="_blank">ZZ 网站</a></li>
+                <li><a id="wxb_index_user4" href="/client.html" target="_blank">WW 网站</a></li>
+                <li><a id="wxb_index_user5" href="/client.html" target="_blank">AA 网站</a></li>
+                <li><a id="wxb_index_user6" href="/client.html" target="_blank">BB 网站</a></li>
+                <li><a id="wxb_index_user7" href="/client.html" target="_blank">CC 网站</a></li>
+                <li><a id="wxb_index_user8" href="/client.html" target="_blank">DD 网站</a></li>
+            </ul>            
+        </div>
+        <div>
+            <a href="/home.html" target="_blank">互联网有害信息监控平台</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>@copy right reserved by Qiniu</p>
+    </footer>
+    
+    <script src="./javascript/config.js"></script>
+    <script>
+            document.querySelector("#wxb_index_user1").addEventListener('click', (e) => {
+                localStorage.user = 'xx';
+                sessionStorage.user = 'xx';
+            });
+            document.querySelector("#wxb_index_user2").addEventListener('click', (e) => {
+                localStorage.user = 'yy';
+                sessionStorage.user = 'yy';
+            });
+            document.querySelector("#wxb_index_user3").addEventListener('click', (e) => {
+                localStorage.user = 'zz';
+                sessionStorage.user = 'zz';
+            });
+            document.querySelector("#wxb_index_user4").addEventListener('click', (e) => {
+                localStorage.user = 'ww';
+                sessionStorage.user = 'ww';
+            });
+            document.querySelector("#wxb_index_user5").addEventListener('click', (e) => {
+                localStorage.user = 'aa';
+                sessionStorage.user = 'aa';
+            });
+            document.querySelector("#wxb_index_user6").addEventListener('click', (e) => {
+                localStorage.user = 'bb';
+                sessionStorage.user = 'bb';
+            });
+            document.querySelector("#wxb_index_user7").addEventListener('click', (e) => {
+                localStorage.user = 'cc';
+                sessionStorage.user = 'cc';
+            });
+            document.querySelector("#wxb_index_user8").addEventListener('click', (e) => {
+                localStorage.user = 'dd';
+                sessionStorage.user = 'dd';
+            });
+    </script>
+</body>
+</html>
