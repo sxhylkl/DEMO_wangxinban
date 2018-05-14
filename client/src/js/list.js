@@ -6,9 +6,11 @@ window.onload = function() {
 }
 
 function getList() {
-    fetch(APIHOST + '/getreport').then(e => e.json()).then(data => {
+    fetch(APIHOST + '/getreport').then(e => e.json()).then(e => {
         // console.log(data);
-        DATA = data;
+        DATA = e;
+        let data = e.data;
+        let now = e.now;
         let list = `<tr>
                         <th>序号</th>
                         <th>单位</th>
@@ -19,7 +21,6 @@ function getList() {
                         <th>已处理（删除）</th>
                         <th>已处理（放行）</th>
                     </tr>`;
-        let now = new Date().getTime();
         let ind = 0;
         for(let i in data) {
             ind ++;
@@ -76,19 +77,19 @@ function showDetail(user, type) {
     let now = new Date().getTime();
     switch(type) {
         case 'newtaskall':
-            data = DATA[user].filter(e => e.label == 0 && e.status == "new" && (now - e.created) < YELLOW);
+            data = DATA.data[user].filter(e => e.label == 0 && e.status == "new" && (DATA.now - e.created) < YELLOW);
             break;
         case 'newtaskyellow':
-            data = DATA[user].filter(e => e.label == 0 && e.status == "new" && (now - e.created) >= YELLOW && (now - e.created) < RED);
+            data = DATA.data[user].filter(e => e.label == 0 && e.status == "new" && (DATA.now - e.created) >= YELLOW && (now - e.created) < RED);
             break;
         case 'newtaskred':
-            data = DATA[user].filter(e => e.label == 0 && e.status == "new" && (now - e.created) >= RED);
+            data = DATA.data[user].filter(e => e.label == 0 && e.status == "new" && (DATA.now - e.created) >= RED);
             break;
         case 'forbtask':
-            data = DATA[user].filter(e => e.label == 0 && e.status == "forbidden");
+            data = DATA.data[user].filter(e => e.label == 0 && e.status == "forbidden");
             break;
         case 'passtask':
-            data = DATA[user].filter(e => e.label == 0 && e.status == "pass");
+            data = DATA.data[user].filter(e => e.label == 0 && e.status == "pass");
             break;  
     }
 

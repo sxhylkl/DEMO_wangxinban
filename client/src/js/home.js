@@ -1,5 +1,3 @@
-let DATA = {};
-
 window.onload = function() {
     getReport().then(report => {
         let wxbpie = [0,0,0];
@@ -507,10 +505,12 @@ function dashboard() {
 function getReport() {
     return new Promise(function(resolve, reject){
         fetch(APIHOST + '/getreport').then(e => e.json()).then(data => {
+            let now = data.now;
+            data = data.data;
             let report = {
                 xx:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, yy:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, zz:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, ww:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, aa:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, bb:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, cc:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}, dd:{newtaskall:0,newtaskyellow:0,newtaskred:0,forbtask:0,passtask:0}
             }
-            let now = new Date().getTime();
+            
             for(let i in data) {
                 report[i].newtaskall = data[i].filter(e => e.label == 0 && e.status == "new").length;
                 report[i].newtaskyellow = data[i].filter(e => e.label == 0 && e.status == "new" && (now - e.created) >= YELLOW && (now - e.created) < RED).length;

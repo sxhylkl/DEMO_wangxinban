@@ -61,7 +61,10 @@ router.get('/passimg/:user/:id', function(req, res, next) {
 
 /* get status */
 router.get('/getreport', function(req, res, next) {
-  res.send(STATUS);
+  res.send({
+    data: STATUS,
+    now: new Date().getTime()
+  });
 });
 
 router.get('/resetconfig', function(req, res, next) {
