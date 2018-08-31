@@ -57,6 +57,7 @@ function getImgList() {
             tmp += `<img src="${data.url}" />`;
         });
         document.querySelector('#wxb_client_imglist').innerHTML = tmp;
+        hideModal();
     })
 }
 
@@ -110,8 +111,7 @@ function uploadImages(files) {
     showModal();
     Promise.all(q).then(() => {
         fetch(APIHOST + '/triggerreport').then(e => {
-            setTimeout(getImgList, 500);
-            hideModal();
+            setTimeout(getImgList, 1000);
         });
     });
 

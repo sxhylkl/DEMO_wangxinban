@@ -5,54 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <base target="_blank" />
-    <title>互联网有害信息监控平台 - 综合平台</title>
+    <title>互联网视频监控云 - 综合平台</title>
     <link rel="stylesheet" href="./stylesheet/common.css">
     <link rel="stylesheet" href="./stylesheet/layout.css">
     <link rel="stylesheet" href="./stylesheet/home.css">
+
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 </head>
 <body>
     <header>
         <div>
             <img src="/imgs/qiniulogo.png" alt="">
-            <p>互联网有害信息监控平台</p>
+            <p>互联网视频监控云</p>
         </div>
-        <div id="wa_home_navbar">
-            <a class="wa-home-nav-selected" href="/home.html" target="_self">综合信息平台</a>
-            <a href="/list.html" target="_self">用户列表</a>
-            <!-- <a href="/detail.html" target="_self">用户详情</a> -->
-            <a href="/about.html" target="_self">产品功能流程图</a>
-            <a href="/config.html" target="_self">配置</a>
-        </div>
+        <div id="navbar"></div>
     </header>
     
     <section>
-        <p class="wxb-home-title">当日入网网站有害数据统计信息：</p>
-        <div class="wxb-home-row">
-            <div>
-                <table id="wxb_home_static_table">
-                    <tr><td>当日所有有害信息数量：</td><td></td><td>条</td></tr>
-                    <tr><td>当日所有未处理有害信息数量：</td><td></td><td>条</td></tr>
-                    <tr><td>当日所有已处理有害信息数量：</td><td></td><td>条</td></tr>
-                    <tr><td>当日所有健康网站数量：</td><td></td><td>个</td></tr>
-                    <tr><td>当日所有黄色警告网站数量：</td><td></td><td>个</td></tr>
-                    <tr><td>当日所有红色警告网站数量：</td><td></td><td>个</td></tr>
+        <div id="wxb_home_leftpanel">
+            <div id="wxb_home_panel_1">
+                <table>
+                    <tr><td>当前健康视频总量</td><td><div class="wxb-home-panel-1-green"></div></td></tr>
+                    <tr><td>当前疑似视频总量</td><td><div class="wxb-home-panel-1-yellow"></div></td></tr>
+                    <tr><td>当前危害视频总量</td><td><div class="wxb-home-panel-1-red"></div></td></tr>
                 </table>
             </div>
-            <div id="wxb_home_piechart"></div>
+            <div>
+                <table id="wxb_home_static_table">
+                    <tr><td>当前监控任务数量:           </td><td>4</td><td>个</td></tr>
+                    <tr><td>当前所有有害信息数量:        </td><td>112133</td><td>条</td></tr>
+                    <tr><td>当前所有未处理有害信息数量:   </td><td>21313</td><td>条</td></tr>
+                    <tr><td>当前所有已处理有害信息数量:   </td><td>91231</td><td>条</td></tr>
+                    <tr><td>当前所有健康网站数量:       </td><td>3212</td><td>个</td></tr>
+                    <tr><td>当前所有黄色警告网站数量:    </td><td>1213</td><td>个</td></tr>
+                    <tr><td>当前所有红色警告网站数量:    </td><td>122</td><td>个</td></tr>
+                </table>
+            </div>
+
+            <div id="wxb_home_piechart" style="height: 25vh;"></div>
         </div>
-        <hr />
-
-        <p class="wxb-home-title">详细统计信息：</p>
-        <div class="wxb-home-row">
-            <div id="wxb_home_rankbar"></div>
-            <div id="wxb_home_stackbar"></div>
+        <div id="wxb_home_middlepanel">
+            <p>全国主要民用机房分布</p>
+            <div id="wxb_home_map" style="height: 60vh"></div>
         </div>
-        <hr />
+        
+        <div id="wxb_home_rightpanel">
+            <p>当前传播节点较多的危害视频</p>
+            <table id="wxb_home_rightpanel_uptable">
+                <tr>
+                    <th>来源IP</th>
+                    <th>视频链接</th>
+                    <th>传播节点数</th>
+                </tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>800</td></tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>767</td></tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>722</td></tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>644</td></tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>544</td></tr>
+                <tr><td>121.223.535.231</td><td>http://xxx.afer.cve/a.mp4</td><td>466</td></tr>
+            </table>
 
-
-        <p class="wxb-home-title">设备运行情况：</p>
-        <div class="wxb-home-row">
-            <div id="wxb_home_dashboard"></div>
+            <p>监控网站检出量排行</p>
+            <table id="wxb_home_rightpanel_downtable">
+                <tr>
+                    <th>监控站点</th>
+                    <th>危害信息量</th>
+                </tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>8010</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>7627</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>7232</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>6444</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>5443</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>4662</td></tr>
+                <tr><td>http://xxx.afer.cve/a.mp4</td><td>4323</td></tr>
+            </table>
         </div>
     </section>
 
@@ -61,16 +95,10 @@
         <p>@copy right reserved by Qiniu</p>
     </footer>
 
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-    <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> -->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> -->
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
-    
+    <div id="wxb_list_modal_detail_trace" class="component-hidden">
+        <div id="tracemap" style="height: 80vh; width: 80vw;"></div>
+    </div>
+
     <script src="./javascript/config.js"></script>
     <script src="./javascript/home.js"></script>
 

@@ -17,10 +17,7 @@ body {
     min-width: 800px;
 }
 
-.btn-success {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+.btn {
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
@@ -36,23 +33,26 @@ body {
     border-radius: .25rem;
 }
 
+.btn-info {
+    .btn;
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-success {
+    .btn;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+
+}
+
 .btn-danger {
+    .btn;
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
 }
 
 button:hover {
@@ -80,4 +80,108 @@ button:hover {
     //     line-height: 2rem;
     //     height: 2rem;
     // }
+}
+
+.wxb-common-hover {
+    color: rgb(8, 109, 241);
+
+    &:hover {
+          cursor: pointer;
+          color: blue;
+          font-weight: 900;
+    }
+}
+
+.biggerTrans {
+    color: red;
+    animation: bigger .5s ease-in-out;
+    /* Safari 与 Chrome: */
+    -webkit-animation: bigger .5s ease-in-out;
+}
+
+@keyframes bigger
+{
+    0%   {transform: scale(1);}
+    50%  {transform: scale(3);}
+    100% {transform: scale(1);}
+}
+
+@-webkit-keyframes flipInX {
+    from {
+          -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+          transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+          -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+          opacity: 0;
+    }
+  
+    40% {
+          -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+          transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+          -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+    }
+  
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+  
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+  
+    to {
+        -webkit-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+  
+@keyframes flipInX {
+    from {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+  
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+  
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+  
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+  
+    to {
+        -webkit-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.flipInX {
+    .animated;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-animation-name: flipInX;
+    animation-name: flipInX;
 }

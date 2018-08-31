@@ -56,7 +56,7 @@ var paths = {
 	appjsonDest: destDir + '/json',
 	appresource: 'src/resource/**/*',
 	appresourceDest: destDir + '/resource',
-	mockdata: 'src/mockdata/*.json',
+	mockdata: 'src/mockdata/*',
 	mockdataDest: destDir + '/mockdata',
 	imgs: 'imgs/*',
 	imgsDest: destDir + '/imgs',

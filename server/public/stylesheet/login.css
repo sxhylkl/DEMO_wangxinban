@@ -13,13 +13,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: url("/imgs/bg0.png");
+  background: url("/imgs/bg.jpeg");
   background-size: 100% 100%;
-}
-section > div:first-child p {
-  color: white;
-  font-size: 3rem;
-  text-align: right;
 }
 section #wa_login_loginpanel {
   border: 1px solid white;
@@ -31,12 +26,14 @@ section #wa_login_loginpanel p:first-child {
   color: white;
   margin: 20px;
   text-align: center;
+  font-size: 1.5rem;
 }
 section #wa_login_loginpanel input,
 section #wa_login_loginpanel button {
+  font-size: 1.2rem;
   width: 100%;
-  margin: 10px 0;
-  padding: .5rem;
+  margin: 1rem 0;
+  padding: .8rem;
   border-radius: .3rem;
   border: 1px solid #aaa;
 }

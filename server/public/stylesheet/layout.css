@@ -20,32 +20,34 @@ header div:first-child p {
   margin-left: 5vw;
   font-size: 2rem;
 }
-header div#wa_home_navbar {
+header div#navbar {
   justify-content: space-around;
   padding: .3rem;
   background: url('/imgs/navbg.jpg');
   font-size: 1.2rem;
   height: 30%;
 }
-header div#wa_home_navbar a {
+header div#navbar a {
   color: #777;
   text-decoration: none;
 }
-header div#wa_home_navbar a.wa-home-nav-selected {
+header div#navbar a.wa-home-nav-selected {
   color: #DAA520;
 }
 section {
   height: 81vh;
-  padding: 20px;
+  padding: 2vh;
   overflow: auto;
 }
 footer {
   height: 7vh;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
+  background: #eee;
 }
 footer p {
   text-align: center;
   font-size: .7rem;
+  margin: 0!important;
 }
