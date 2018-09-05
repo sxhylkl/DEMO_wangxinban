@@ -1,4 +1,4 @@
-// let APIHOST = 'http://localhost:3000';
+let APIHOST = 'http://localhost:3000';
 
 if(sessionStorage.islogin == undefined || sessionStorage.islogin != 'true') {
     location.href = '/index.html';
@@ -9,8 +9,8 @@ if(sessionStorage.islogin == undefined || sessionStorage.islogin != 'true') {
 // initiate navbar
 let page = {
     home:   '综合信息平台',
-    list:   '分类统计信息',
-    task:   '常规任务定制',
+    list:   '监控统计信息',
+    task:   '常规设置',
     custom: '特殊任务定制'
 };
 let navbartmp = '';

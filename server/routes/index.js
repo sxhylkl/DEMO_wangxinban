@@ -68,11 +68,11 @@ tracedata = fs.readFileSync('./public/mockdata/les-miserables.gexf', 'utf-8');
 
 TASKS = [{
   taskid: 1,
-  name: '北京视频网站监控任务',
-  sitenum: 120,
-  healthnum: 40,
-  issuenum: 80,
-  badnum: 12345,
+  name: '抖音',
+  pulp: 0.80,
+  terror: 0.70,
+  politician: 0.85,
+  disu: 0.65,
   items: [{
     domain: 'www.youku.com',
     create: '2018-01-11',
@@ -91,11 +91,11 @@ TASKS = [{
   }]
 },{
   taskid: 2,
-  name: '上海视频网站监控任务',
-  sitenum: 100,
-  healthnum: 2,
-  issuenum: 98,
-  badnum: 223232,
+  name: '快手',
+  pulp: 0.90,
+  terror: 0.7,
+  politician: 0.85,
+  disu: 0.65,
   items: [{
     domain: 'www.panda.com',
     create: '2018-01-11',
@@ -114,11 +114,11 @@ TASKS = [{
   }]
 },{
   taskid: 3,
-  name: '广州视频网站监控任务',
-  sitenum: 130,
-  healthnum: 22,
-  issuenum: 108,
-  badnum: 11111,
+  name: '斗鱼',
+  pulp: 0.70,
+  terror: 0.72,
+  politician: 0.85,
+  disu: 0.65,
   items: [{
     domain: 'v.5room.com',
     create: '2018-01-11',
@@ -137,11 +137,11 @@ TASKS = [{
   }]
 },{
   taskid: 4,
-  name: '深圳视频网站监控任务',
-  sitenum: 80,
-  healthnum: 2,
-  issuenum: 78,
-  badnum: 32323,
+  name: '火山小视频',
+  pulp: 0.88,
+  terror: 0.7,
+  politician: 0.85,
+  disu: 0.65,
   items: [{
     domain: 'v.qq.com',
     create: '2018-01-11',
@@ -162,7 +162,7 @@ TASKS = [{
 
 CUSTOM = [{
   taskid: 1,
-  name: '北京XX事件',
+  name: '昆山恶霸反杀事件',
   sitenum: 120,
   imgnum: 40,
   videonum: 80,
@@ -185,7 +185,7 @@ CUSTOM = [{
   }]
 },{
   taskid: 2,
-  name: '中央XX事件',
+  name: '毒疫苗事件',
   sitenum: 120,
   imgnum: 2,
   videonum: 98,
@@ -208,7 +208,7 @@ CUSTOM = [{
   }]
 },{
   taskid: 3,
-  name: '上海XX事件',
+  name: '滴滴司机奸杀事件',
   sitenum: 120,
   imgnum: 22,
   videonum: 108,
@@ -231,7 +231,7 @@ CUSTOM = [{
   }]
 },{
   taskid: 4,
-  name: '西藏XX事件',
+  name: '刘强东性侵大学生',
   sitenum: 120,
   imgnum: 2,
   videonum: 78,

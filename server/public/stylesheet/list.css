@@ -12,6 +12,10 @@ table th {
   text-align: center;
   height: 3rem;
 }
+table td img,
+table th img {
+  width: 5rem;
+}
 #wxb_list_tab_menu label {
   margin-right: 2px;
 }
@@ -27,63 +31,13 @@ table th {
 #wxb_list_table_container td:nth-of-type(5) {
   color: red;
 }
-#wxb_task_modal_createpanel #wxb_task_createpanel_title {
+#wxb_task_modal_apppanel #wxb_task_apppanel_title {
   text-align: center;
   font-size: 2rem;
   padding: 1rem 0;
   border: none;
   width: 100%;
   color: #777;
-}
-#wxb_task_modal_createpanel fieldset {
-  margin: 2rem 0;
-  padding: 2rem;
-  text-align: center;
-  width: 60vw;
-  margin: 3rem auto;
-  border: 1px solid #ccc;
-}
-#wxb_task_modal_createpanel fieldset legend {
-  font-size: 1.2rem;
-  padding: 0 2rem;
-}
-#wxb_task_modal_createpanel fieldset > div {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-#wxb_task_modal_createpanel fieldset > div button {
-  margin: 0 1rem;
-}
-#wxb_task_modal_createpanel fieldset .wxb_task_createpanel_fs {
-  width: 100%;
-}
-#wxb_task_modal_createpanel fieldset .wxb_task_createpanel_fs label {
-  width: 20%;
-  font-size: 1rem;
-}
-#wxb_task_modal_createpanel fieldset .wxb_task_createpanel_fs input {
-  width: 60%;
-}
-#wxb_task_modal_createpanel fieldset #wxb_task_createpanel_form {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-}
-#wxb_task_modal_createpanel fieldset #wxb_task_createpanel_form > div {
-  width: 50%;
-}
-#wxb_task_modal_createpanel fieldset #wxb_task_createpanel_form > div input {
-  width: 90%;
-}
-#wxb_task_modal_createpanel fieldset input {
-  font-size: 1rem;
-  padding: .5rem;
-}
-#wxb_task_modal_createpanel fieldset button {
-  margin: 1rem auto 0 auto;
 }
 #wxb_task_detail_site_table {
   margin-top: 2rem;
@@ -116,6 +70,62 @@ table th {
 }
 #wxb_list_modal_detail_trace #tracemap {
   background: rgba(255, 255, 255, 0.8);
+}
+#wxb_list_modal_report {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+#wxb_list_modal_report .wxb-list-model-container {
+  width: 50vw;
+}
+#wxb_list_modal_report .wxb-list-model-container > p {
+  margin: 2rem;
+  font-size: 1.5rem;
+}
+#wxb_list_modal_report .wxb-list-model-container button {
+  margin: 3rem;
+}
+#wxb_list_modal_user_detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+#wxb_list_modal_user_detail .wxb-list-model-container {
+  overflow: auto;
+}
+#wxb_list_modal_user_detail .wxb-list-model-container > p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+#wxb_list_modal_user_detail .wxb-list-model-container > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+#wxb_list_modal_user_detail .wxb-list-model-container > div table {
+  margin: 2rem 0;
+}
+#wxb_list_modal_user_detail .wxb-list-model-container > div table:nth-of-type(1) {
+  width: 35vw;
 }
 #wxb_list_modal_addlist {
   position: fixed;
@@ -154,12 +164,12 @@ table th {
   width: 30vw;
   height: 30vh;
 }
-#wxb_list_modal_addlist #wxb_list_applist #wxb_list_modal_detail_radar {
-  width: 30vw;
-  height: 30vh;
-}
 #wxb_list_modal_addlist button {
   margin: 2rem;
+}
+#wxb_list_modal_detail_radar {
+  width: 35vw;
+  height: 40vh;
 }
 .wxb-list-status-red {
   height: 1.2rem;
@@ -182,4 +192,10 @@ table th {
 }
 .js-wxb-task-modal-back:hover {
   cursor: pointer;
+}
+.wxb-list-model-container {
+  background: rgba(255, 255, 255, 0.8);
+  max-height: 80vh;
+  width: 80vw;
+  padding: 2rem;
 }

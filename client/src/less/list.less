@@ -16,6 +16,10 @@ table {
         // &:hover {
         //     cursor: pointer;
         // }
+
+        img {
+            width: 5rem;
+        }
     }
 }
 
@@ -43,73 +47,14 @@ table {
     }
 }
 
-#wxb_task_modal_createpanel {
-    
-    #wxb_task_createpanel_title {
+#wxb_task_modal_apppanel {
+    #wxb_task_apppanel_title {
         text-align: center;
         font-size: 2rem;
         padding: 1rem 0;
         border: none;
         width: 100%;
         color: #777;
-    }
-
-    fieldset {
-        margin: 2rem 0;
-        padding: 2rem;
-        text-align: center;
-        width: 60vw;
-        margin: 3rem auto;
-        border: 1px solid #ccc;
-
-        legend {
-            font-size: 1.2rem;
-            padding: 0 2rem;
-        }
-
-        >div {
-            padding: 1rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-
-            button {
-                margin: 0 1rem;;
-            }
-        }
-
-        .wxb_task_createpanel_fs {
-            width: 100%;
-            label {
-                width: 20%;
-                font-size: 1rem;
-            }
-            input {
-                width: 60%;
-            }
-        }
-
-        #wxb_task_createpanel_form {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            >div {
-                width: 50%;
-                input {
-                    width: 90%;
-                }
-            }
-        }
-
-        input {
-            font-size: 1rem;
-            padding: .5rem;
-        }
-
-        button {
-            margin: 1rem auto 0 auto;
-        }
     }
 }
 
@@ -138,6 +83,48 @@ table {
     .wxb-task-modal;
     #tracemap {
         background: rgba(255,255,255,0.8);
+    }
+}
+
+#wxb_list_modal_report {
+    text-align: center;
+
+    .wxb-task-modal;
+    .wxb-list-model-container {
+        width: 50vw;
+        >p {
+            margin: 2rem;
+            font-size: 1.5rem;
+        }
+        button {
+            margin: 3rem;
+        }
+    }
+}
+
+#wxb_list_modal_user_detail {
+    .wxb-task-modal;
+    .wxb-list-model-container {
+        overflow: auto;
+        >p {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+    
+        >div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+    
+            table {
+                margin: 2rem 0;
+            }
+    
+            table:nth-of-type(1) {
+                width: 35vw;
+            }
+        }
     }
 }
 
@@ -171,15 +158,15 @@ table {
             width: 30vw;
             height: 30vh;
         }
-
-        #wxb_list_modal_detail_radar {
-            width: 30vw;
-            height: 30vh;
-        }
     }
     button {
         margin: 2rem;
     }
+}
+
+#wxb_list_modal_detail_radar {
+    width: 35vw;
+    height: 40vh;
 }
 
 .wxb-list-status-red {
@@ -204,4 +191,11 @@ table {
     &:hover {
         cursor: pointer;
     }
+}
+
+.wxb-list-model-container {
+    background: rgba(255,255,255,0.8);
+    max-height: 80vh;
+    width: 80vw;
+    padding: 2rem;
 }

@@ -2,6 +2,7 @@ APIHOST = (typeof(APIHOST) == 'undefined') ? "" : APIHOST;
 let DATA = [];
 let IND = null;
 let Data_app = [];
+let Data_app_detail = [];
 
 window.onload = function() {
     setTimeout(fillListTableApp, 1);
@@ -14,49 +15,164 @@ window.onload = function() {
 
 function fillListTableApp() {
     let list = `<tr>
-        <th>序号</th>
-        <th>应用名称</th>
-        <th>违禁内容总量</th>
-        <th>已处置数量</th>
-        <th>操作</th>
-    </tr>`;
+                    <th>序号</th>
+                    <th>应用名称</th>
+                    <th>上传资源数量</th>
+                    <th>资源访问总数</th>
+                    <th>资源扫描完成率</th>
+                    <th>命中违禁资源量</th>
+                    <th>活跃用户数</th>
+                    <th>应用平台资源健康指数</th>
+                    <th>应用平台用户健康指数</th>
+                    <th>操作</th>
+                </tr>`;
     for(let i in Data_app) {
         list += `<tr>
             <td>${Number(i)+1}</td>
-            <td class="wxb-common-hover" data-index="${i}" onclick="showDetailModal()">${Data_app[i].name}</td>
-            <td>${Data_app[i].issuenum}</td>
-            <td>${Data_app[i].handlenum}</td>
-            <td class="wxb-common-hover" data-index="${i}" onclick="alert('报告已生成并发送到相关单位！')">发送报告</td>
+            <td class="wxb-common-hover" data-index="${i}" onclick="goAppPanel()">${Data_app[i].name}</td>
+            <td>${Data_app[i].uploadnum}</td>
+            <td>${Data_app[i].visitnum}</td>
+            <td>${Data_app[i].completerate}</td>
+            <td>${Data_app[i].forbidden}</td>
+            <td>${Data_app[i].usernum}</td>
+            <td>${Data_app[i].appindex}</td>
+            <td>${Data_app[i].userindex}</td>
+            <td class="wxb-common-hover" data-index="${i}" onclick="alert('报告已生成并发送到相关单位！')">发送通告</td>
         </tr>`;
     }
-
     document.querySelector('#wxb_list_table').innerHTML = list;
-    // addEvent();
+
+    list = `<tr>
+                <th>序号</th>
+                <th>资源地址</th>
+                <th>资源内容</th>
+                <th>上传时间</th>
+                <th>访问量</th>
+                <th>
+                    资源类型
+                    <select name="" id="">
+                        <option value="图片">全部</option>
+                        <option value="图片">图片</option>
+                        <option value="视频">视频</option>
+                    </select>
+                </th>
+                <th>
+                    违禁类别
+                    <select name="" id="">
+                        <option value="涉黄">涉黄</option>
+                        <option value="涉暴">涉暴</option>
+                        <option value="涉政">涉政</option>
+                        <option value="低俗">低俗</option>
+                    </select>
+                </th>
+                <th>上传账号</th>
+                <th>
+                    状态
+                    <select name="" id="">
+                        <option value="未操作">未操作</option>
+                        <option value="已忽略">已忽略</option>
+                        <option value="已通告">已通告</option>
+                        <option value="已处理">已封禁</option>
+                    </select>
+                </th>
+                <th>操作</th>
+            </tr>`;
+
+    for(let i in Data_app_detail) {
+        list += `<tr>
+            <td>${Number(i)+1}</td>
+            <td>${Data_app_detail[i].url}</td>
+            <td><img src="/imgs/illegal.png"></td>
+            <td>${(new Date()).toJSON().slice(0,-5).replace('T', '  ')}</td>
+            <td>${Data_app_detail[i].visitnum}</td>
+            <td>${Data_app_detail[i].type}</td>
+            <td>${Data_app_detail[i].class}</td>
+            <td class="wxb-common-hover" onclick="showUserModal()">${Data_app_detail[i].account}</td>
+            <td>${Data_app_detail[i].status}</td>
+            <td><span class="wxb-common-hover" data-index="${i}" onclick="toggleReportModal()">发送通告</span> <span class="wxb-common-hover" >忽略</span></td>
+        </tr>`;
+    }
+    document.querySelector('#wxb_list_app_table').innerHTML = list;
+
+
+    list = `<tr>
+                    <th>序号</th>
+                    <th>资源地址</th>
+                    <th>资源内容</th>
+                    <th>上传时间</th>
+                    <th>访问量</th>
+                    <th>
+                        资源类型
+                        <select name="" id="">
+                            <option value="图片">全部</option>
+                            <option value="图片">图片</option>
+                            <option value="视频">视频</option>
+                        </select>
+                    </th>
+                    <th>上传账号</th>
+                    <th>
+                        状态
+                        <select name="" id="">
+                            <option value="未操作">未操作</option>
+                            <option value="已忽略">已忽略</option>
+                            <option value="已通告">已通告</option>
+                            <option value="已处理">已封禁</option>
+                        </select>
+                    </th>
+                    <th>操作</th>
+                </tr>`;
+    for(let i in Data_app_detail) {
+        list += `<tr>
+        <td>${Number(i)+1}</td>
+        <td>${Data_app_detail[i].url}</td>
+        <td><img src="/imgs/illegal.png"></td>
+        <td>${(new Date()).toJSON().slice(0,-5).replace('T', '  ')}</td>
+        <td>${Data_app_detail[i].visitnum}</td>
+        <td>${Data_app_detail[i].type}</td>
+        <td class="wxb-common-hover" onclick="showUserModal()">${Data_app_detail[i].account}</td>
+        <td>${Data_app_detail[i].status}</td>
+        <td><span class="wxb-common-hover" data-index="${i}" onclick="toggleReportModal()">发送通告</span> <span class="wxb-common-hover" >忽略</span></td>
+        </tr>`;
+    }
+    document.querySelector('#wxb_list_event_table').innerHTML = list;
 }
 
 
-function fillListTableZone() {
+function fillListTableUser() {
     let list = `<tr>
-        <th>序号</th>
-        <th>地区</th>
-        <th>相关应用数量</th>
-        <th>违禁内容总量</th>
-        <th>已处置数量</th>
-        <th>操作</th>
-    </tr>`;
-    for(let i in Data_zone) {
+                    <th>序号</th>
+                    <th>平台</th>
+                    <th>账号</th>
+                    <th>上传数量</th>
+                    <th>上传违禁资源数量</th>
+                    <th>资源访问总量</th>
+                    <th>违禁资源访问总量</th>
+                    <th>账户活跃度</th>
+                    <th>账户设备数</th>
+                    <th>账户接入点区域覆盖</th>
+                    <th>账户分类</th>
+                    <th>账户监控指数</th>
+                    <th>操作</th>
+                </tr>`;
+    for(let i in Data_user) {
         list += `<tr>
             <td>${Number(i)+1}</td>
-            <td class="wxb-common-hover"  data-index="${i}" onclick="showDetailModal()">${Data_zone[i].name}</td>
-            <td>${Data_zone[i].issueapp}</td>
-            <td>${Data_zone[i].issuenum}</td>
-            <td>${Data_zone[i].handlenum}</td>
+            <td>${Data_user[i].app}</td>
+            <td class="wxb-common-hover"  data-index="${i}" onclick="showUserModal()">${Data_user[i].name}</td>
+            <td>${Data_user[i].uploadnum}</td>
+            <td>${Data_user[i].uploadissue}</td>
+            <td>${Data_user[i].visitnum}</td>
+            <td>${Data_user[i].visitissue}</td>
+            <td>${Data_user[i].activity}</td>
+            <td>${Data_user[i].device}</td>
+            <td>${Data_user[i].city}</td>
+            <td>${Data_user[i].type}</td>
+            <td>${Data_user[i].userindex}</td>
             <td class="wxb-common-hover" data-index="${i}" onclick="alert('报告已生成并发送到相关单位！')">发送报告</td>
         </tr>`;
     }
 
     document.querySelector('#wxb_list_table').innerHTML = list;
-    // addEvent();
 }
 
 function fillListTableEvent() {
@@ -71,7 +187,7 @@ function fillListTableEvent() {
     for(let i in Data_events) {
         list += `<tr>
         <td>${Number(i)+1}</td>
-            <td class="wxb-common-hover"  data-index="${i}" onclick="showDetailModal()">${Data_events[i].name}</td>
+            <td class="wxb-common-hover"  data-index="${i}" onclick="goEventPanel()">${Data_events[i].name}</td>
             <td>${Data_events[i].issueapp}</td>
             <td>${Data_events[i].issuenum}</td>
             <td>${Data_events[i].handlenum}</td>
@@ -88,8 +204,8 @@ document.querySelector('#wxb_list_tab_app_label').addEventListener('click', () =
     fillListTableApp();
 });
 
-document.querySelector('#wxb_list_tab_zone_label').addEventListener('click', () => {
-    fillListTableZone();
+document.querySelector('#wxb_list_tab_user_label').addEventListener('click', () => {
+    fillListTableUser();
 });
 
 document.querySelector('#wxb_list_tab_event_label').addEventListener('click', () => {
@@ -104,7 +220,7 @@ function addEvent() {
                 showDetail(DATA[event.target.dataset.index].items);
                 document.querySelector('#wxb_task_createpanel_title').value = DATA[event.target.dataset.index].name
                 document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
-                document.querySelector('#wxb_task_modal_createpanel').removeAttribute('class');
+                document.querySelector('#wxb_task_modal_apppanel').removeAttribute('class');
             }
         });
     });
@@ -136,93 +252,87 @@ function showDetail(data) {
     document.querySelector('#wxb_task_detail_table').innerHTML = tmp;
 }
 
-// document.querySelector('#wxb_task_btn_createtask').addEventListener('click', (e) => {
-//     IND = null;
-//     document.querySelector('#wxb_task_createpanel_title').value = '';
-//     document.querySelector('#wxb_task_detail_table').innerHTML = `<tr><th>序号</th><th>任务名称</th><th>监控站点数量</th><th>健康站点数量</th><th>问题站点数量</th><th>违禁内容总量</th><th>生成并导出报告</th></tr>`;
-//     document.querySelector('#wxb_task_modal_createpanel').removeAttribute('class');
-//     document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
-// });
-
 document.querySelectorAll('.js-wxb-task-modal-back').forEach(e => e.addEventListener('click', (e) => {
-    document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
-    document.querySelector('#wxb_task_modal_createpanel').setAttribute('class', 'component-hidden');
-    document.querySelector('#wxb_task_modal_detaillist').setAttribute('class', 'component-hidden');
-    document.querySelector('#wxb_list_modal_detail_trace').setAttribute('class', 'component-hidden');
-    if(e.target.dataset['path'] == 1) {
-        document.querySelector('#wxb_list_table_container').removeAttribute('class');
-    } else if (e.target.dataset['path'] == 2) {
-        document.querySelector('#wxb_task_modal_createpanel').removeAttribute('class');
-    } else {
-        document.querySelector('#wxb_task_modal_detaillist').removeAttribute('class');
-    }
+    document.querySelector('#wxb_list_table_container').removeAttribute('class');
+    document.querySelector('#wxb_task_modal_apppanel').setAttribute('class', 'component-hidden');
+    document.querySelector('#wxb_task_modal_userpanel').setAttribute('class', 'component-hidden');
+    document.querySelector('#wxb_task_modal_eventpanel').setAttribute('class', 'component-hidden');
 }));
 
 
-document.querySelector('#wxb_task_createpanel_addsite').addEventListener('click', (e) => {
-    let title = document.querySelector('#wxb_task_createpanel_title').value;
-    let domain = document.querySelector('#wxb_task_createpanel_domain').value;
-    createTask(title, domain=='' ? []:[domain]);
-});
+// document.querySelector('#wxb_task_createpanel_addsite').addEventListener('click', (e) => {
+//     let title = document.querySelector('#wxb_task_createpanel_title').value;
+//     let domain = document.querySelector('#wxb_task_createpanel_domain').value;
+//     createTask(title, domain=='' ? []:[domain]);
+// });
 
-function createTask(title, domain) {
-    if(title == '') {
-        alert('任务名称不能为空!');
-        return;
-    }
+// function createTask(title, domain) {
+//     if(title == '') {
+//         alert('任务名称不能为空!');
+//         return;
+//     }
 
-    if(IND == null) {
-        IND = DATA.length;
-        DATA.push({
-            taskid: Number(DATA.slice(-1)[0].taskid) + 1,
-            name: title,
-            sitenum: 0,
-            healthnum: 0,
-            issuenum: 0,
-            badnum: 0,
-            items: []
-        });
-    } else {
-        DATA[IND].name = title;
-    }
+//     if(IND == null) {
+//         IND = DATA.length;
+//         DATA.push({
+//             taskid: Number(DATA.slice(-1)[0].taskid) + 1,
+//             name: title,
+//             sitenum: 0,
+//             healthnum: 0,
+//             issuenum: 0,
+//             badnum: 0,
+//             items: []
+//         });
+//     } else {
+//         DATA[IND].name = title;
+//     }
 
-    if(domain.length > 0) {
-        for(let dom of domain) {
-            DATA[IND].items.push({
-                domain: dom,
-                create: (new Date()).toISOString().slice(0,10),
-                status: '健康',
-                badnum: 0
-            });
+//     if(domain.length > 0) {
+//         for(let dom of domain) {
+//             DATA[IND].items.push({
+//                 domain: dom,
+//                 create: (new Date()).toISOString().slice(0,10),
+//                 status: '健康',
+//                 badnum: 0
+//             });
     
-            DATA[IND].sitenum += 1;
-            DATA[IND].healthnum += 1;
-        }
-    }
+//             DATA[IND].sitenum += 1;
+//             DATA[IND].healthnum += 1;
+//         }
+//     }
 
-    updateList();
-    document.querySelector('#wxb_task_createpanel_domain').value = '';
-    showDetail(DATA[IND].items);
-}
+//     updateList();
+//     document.querySelector('#wxb_task_createpanel_domain').value = '';
+//     showDetail(DATA[IND].items);
+// }
 
-function deleteTask(event) {
-    DATA.splice(event.target.dataset.index, 1);
-    updateList();
-}
+// function deleteTask(event) {
+//     DATA.splice(event.target.dataset.index, 1);
+//     updateList();
+// }
 
-function updateList() {
-    postBody.body = JSON.stringify({tasklist:DATA});
-    fetch(APIHOST + '/updatetasklist', postBody).then(e => {
-        console.log('done');
-    });
-    fillListTable(DATA);
-}
+// function updateList() {
+//     postBody.body = JSON.stringify({tasklist:DATA});
+//     fetch(APIHOST + '/updatetasklist', postBody).then(e => {
+//         console.log('done');
+//     });
+//     fillListTable(DATA);
+// }
 
 document.querySelector('#wxb_list_modal_detail_trace').addEventListener('click', (e) => {
     document.querySelector('#wxb_list_modal_detail_trace').setAttribute('class', 'component-hidden');
 });
 
 document.querySelector('#tracemap').addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+
+document.querySelector('#wxb_list_modal_user_detail').addEventListener('click', (e) => {
+    document.querySelector('#wxb_list_modal_user_detail').setAttribute('class', 'component-hidden');
+});
+
+document.querySelector('#wxb_list_modal_user_detail .wxb-list-model-container').addEventListener('click', (e) => {
     e.stopPropagation();
 });
 
@@ -250,6 +360,14 @@ function showDetailModal() {
     document.querySelector('#wxb_list_modal_addlist').removeAttribute('class');
 }
 
+function showUserModal() {
+    document.querySelector('#wxb_list_modal_user_detail').classList.toggle('component-hidden');
+}
+
+function toggleReportModal() {
+    document.querySelector('#wxb_list_modal_report').classList.toggle('component-hidden');
+}
+
 document.querySelector('#wxb_list_modal_addlist').addEventListener('click', (e) => {
     document.querySelector('#wxb_list_modal_addlist').setAttribute('class', 'component-hidden');
 });
@@ -257,6 +375,16 @@ document.querySelector('#wxb_list_modal_addlist').addEventListener('click', (e) 
 document.querySelector('#wxb_list_applist').addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+document.querySelector('#wxb_list_modal_report').addEventListener('click', (e) => {
+    document.querySelector('#wxb_list_modal_report').setAttribute('class', 'component-hidden');
+});
+
+document.querySelector('#wxb_list_modal_report .wxb-list-model-container').addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+
 // ========= add list modal close ===========
 
 
@@ -272,9 +400,21 @@ document.querySelector('#wxb_list_applist').addEventListener('click', (e) => {
 // setInterval(autoIncrease, 1000);
 
 
+function goAppPanel(event) {
+    document.querySelector('#wxb_list_table_container').classList.toggle('component-hidden');
+    document.querySelector('#wxb_task_modal_apppanel').classList.toggle('component-hidden');
+    console.log(event);
+}
+
+function goEventPanel(event) {
+    document.querySelector('#wxb_list_table_container').classList.toggle('component-hidden');
+    document.querySelector('#wxb_task_modal_eventpanel').classList.toggle('component-hidden');
+    console.log(event);
+}
+
 function goTaskDetailPanel(event) {
     document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
-    document.querySelector('#wxb_task_modal_createpanel').setAttribute('class', 'component-hidden');
+    document.querySelector('#wxb_task_modal_apppanel').setAttribute('class', 'component-hidden');
     document.querySelector('#wxb_task_modal_detaillist').removeAttribute('class');
     console.log(event);
 }
@@ -554,26 +694,15 @@ function drawRadar() {
     option = null;
     option = {
         title: {
-            text: '健康指数雷达图',
+            text: '账户雷达图',
             subtext: '',
-            top: 10,
-            left: 10
+            top: 0,
+            left: 60
         },
         tooltip: {
             trigger: 'item',
             backgroundColor : 'rgba(0,0,250,0.2)'
         },
-        // legend: {
-        //     type: 'scroll',
-        //     bottom: 10,
-        //     data: (function (){
-        //         var list = [];
-        //         for (var i = 1; i <=28; i++) {
-        //             list.push(i + 2000 + '');
-        //         }
-        //         return list;
-        //     })()
-        // },
         visualMap: {
             top: 'middle',
             right: 10,
@@ -581,12 +710,12 @@ function drawRadar() {
             calculable: true
         },
         radar: {
-        indicator : [
-            { text: '自监控能力', max: 400},
-            { text: '及时处置能力', max: 400},
-            { text: '响应能力', max: 400},
-            { text: '扩散能力', max: 400},
-            { text: '社会影响力', max: 400}
+            indicator : [
+                { text: '上传指数', max: 400},
+                { text: '活跃度', max: 400},
+                { text: '访问指数', max: 400},
+                { text: '设备数', max: 400},
+                { text: '危害力度', max: 400}
             ]
         },
         series : (function (){
@@ -627,70 +756,43 @@ function drawRadar() {
 }
 
 Data_app = [
-    {name: '优酷视频', issuenum: 1115, handlenum: 500, issueapp: 30},
-    {name: '腾讯视频', issuenum: 1008, handlenum: 488, issueapp: 28},
-    {name: '爱奇艺', issuenum: 985, handlenum: 477, issueapp: 24},
-    {name: '土豆视频', issuenum: 885, handlenum: 466, issueapp: 23},
-    {name: '熊猫TV', issuenum: 875, handlenum: 444, issueapp: 22},
-    {name: 'PPTV', issuenum: 765, handlenum: 422, issueapp: 21},
-    {name: 'bilibili', issuenum: 745, handlenum: 388, issueapp: 19},
-    {name: '56视频', issuenum: 695, handlenum: 366, issueapp: 18},
-    {name: '6间房', issuenum: 615, handlenum: 355, issueapp: 17},
-    {name: '芒果TV', issuenum: 555, handlenum: 333, issueapp: 16},
-    {name: '暴风视频', issuenum: 545, handlenum: 311, issueapp: 15},
-    {name: '搜狐视频', issuenum: 515, handlenum: 299, issueapp: 14},
-    {name: '新浪视频', issuenum: 475, handlenum: 288, issueapp: 14},
-    {name: 'hao123', issuenum: 465, handlenum: 277, issueapp: 14},
-    {name: '乐视', issuenum: 445, handlenum: 266, issueapp: 13},
-    {name: '抖音', issuenum: 425, handlenum: 255, issueapp: 13},
-    {name: '虎嗅', issuenum: 245, handlenum: 244, issueapp: 12},
-    {name: '斗鱼', issuenum: 225, handlenum: 233, issueapp: 12},
-    {name: '1644', issuenum: 125, handlenum: 222, issueapp: 12},
-    {name: 'acfun', issuenum: 115, handlenum: 211, issueapp: 11}
+    {name: '抖音',      uploadnum: 4215, visitnum: 22255, completerate: '80%', forbidden: 150, usernum: 7500, appindex: 8.2, userindex: 7.6},
+    {name: '快手',      uploadnum: 4225, visitnum: 12255, completerate: '80%', forbidden: 250, usernum: 5200, appindex: 8.3, userindex: 7.3},
+    {name: '斗鱼',      uploadnum: 4325, visitnum: 21155, completerate: '80%', forbidden: 150, usernum: 4500, appindex: 8.1, userindex: 7.1},
+    {name: '火山小视频', uploadnum: 4215, visitnum: 11155, completerate: '80%', forbidden: 90, usernum: 2500, appindex: 8.0, userindex: 7.9}
 ];
 
-Data_zone = [
-    {name: '北京市', issuenum: 1115, handlenum: 500, issueapp: 30},
-    {name: '深圳市', issuenum: 1008, handlenum: 488, issueapp: 28},
-    {name: '广州市', issuenum: 985, handlenum: 477, issueapp: 24},
-    {name: '上海市', issuenum: 885, handlenum: 466, issueapp: 23},
-    {name: '杭州市', issuenum: 875, handlenum: 444, issueapp: 22},
-    {name: '武汉市', issuenum: 765, handlenum: 422, issueapp: 21},
-    {name: '天津市', issuenum: 745, handlenum: 388, issueapp: 19},
-    {name: '重庆市', issuenum: 695, handlenum: 366, issueapp: 18},
-    {name: '南京市', issuenum: 615, handlenum: 355, issueapp: 17},
-    {name: '苏州市', issuenum: 555, handlenum: 333, issueapp: 16},
-    {name: '西安市', issuenum: 545, handlenum: 311, issueapp: 15},
-    {name: '长沙市', issuenum: 515, handlenum: 299, issueapp: 14},
-    {name: '沈阳市', issuenum: 475, handlenum: 288, issueapp: 14},
-    {name: '青岛市', issuenum: 465, handlenum: 277, issueapp: 14},
-    {name: '郑州市', issuenum: 445, handlenum: 266, issueapp: 13},
-    {name: '大连市', issuenum: 425, handlenum: 255, issueapp: 13},
-    {name: '东莞市', issuenum: 245, handlenum: 244, issueapp: 12},
-    {name: '宁波市', issuenum: 225, handlenum: 233, issueapp: 12},
-    {name: '厦门市', issuenum: 125, handlenum: 222, issueapp: 12},
-    {name: '合肥市', issuenum: 115, handlenum: 211, issueapp: 11}
+Data_app_detail = [
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'},
+    {url: 'http://douyin.com/video/2839288==', visitnum: 200, type: '视频', class: '涉黄', account: 'alpha', status: '未封禁'}
+]
+
+Data_user = [
+    {app: '抖音', name: 'alpha',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '抖音', name: 'beta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '快手', name: 'gamma',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '斗鱼', name: 'delta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '抖音', name: 'epsilon',  uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '快手', name: 'zeta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '斗鱼', name: 'eta',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '斗鱼', name: 'Theta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '抖音', name: 'phi',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '快手', name: 'kappa',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '斗鱼', name: 'lambda',   uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: '抖音', name: 'mu',       uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9}
 ];
 
 Data_events = [
-    {name: '自定义事件1', issuenum: 1115, handlenum: 500, issueapp: 30},
-    {name: '自定义事件2', issuenum: 1008, handlenum: 488, issueapp: 28},
-    {name: '自定义事件3', issuenum: 985, handlenum: 477, issueapp: 24},
-    {name: '自定义事件4', issuenum: 885, handlenum: 466, issueapp: 23},
-    {name: '自定义事件5', issuenum: 875, handlenum: 444, issueapp: 22},
-    {name: '自定义事件6', issuenum: 765, handlenum: 422, issueapp: 21},
-    {name: '自定义事件7', issuenum: 745, handlenum: 388, issueapp: 19},
-    {name: '自定义事件8', issuenum: 695, handlenum: 366, issueapp: 18},
-    {name: '自定义事件9', issuenum: 615, handlenum: 355, issueapp: 17},
-    {name: '自定义事件10', issuenum: 555, handlenum: 333, issueapp: 16},
-    {name: '自定义事件11', issuenum: 545, handlenum: 311, issueapp: 15},
-    {name: '自定义事件12', issuenum: 515, handlenum: 299, issueapp: 14},
-    {name: '自定义事件13', issuenum: 475, handlenum: 288, issueapp: 14},
-    {name: '自定义事件14', issuenum: 465, handlenum: 277, issueapp: 14},
-    {name: '自定义事件15', issuenum: 445, handlenum: 266, issueapp: 13},
-    {name: '自定义事件16', issuenum: 425, handlenum: 255, issueapp: 13},
-    {name: '自定义事件17', issuenum: 245, handlenum: 244, issueapp: 12},
-    {name: '自定义事件18', issuenum: 225, handlenum: 233, issueapp: 12},
-    {name: '自定义事件19', issuenum: 125, handlenum: 222, issueapp: 12},
-    {name: '自定义事件20', issuenum: 115, handlenum: 211, issueapp: 11}
+    {name: '昆山恶霸反杀事件',   issuenum: 1115, handlenum: 500, issueapp: 30},
+    {name: '毒疫苗事件',   issuenum: 1008, handlenum: 488, issueapp: 28},
+    {name: '滴滴司机奸杀事件',   issuenum: 985,  handlenum: 477, issueapp: 24},
+    {name: '刘强东性侵大学生',   issuenum: 885,  handlenum: 466, issueapp: 23}
 ];

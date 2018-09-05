@@ -19,23 +19,21 @@ function fillListTable(data) {
     let list = `<tr>
         <th>序号</th>
         <th>任务名称</th>
-        <th>监控站点数量</th>
-        <th>健康站点数量</th>
-        <th>问题站点数量</th>
-        <th>违禁内容总量</th>
-        <th>已处置数量</th>
+        <th>鉴黄阈值</th>
+        <th>鉴暴阈值</th>
+        <th>鉴政阈值</th>
+        <th>低俗阈值</th>
         <th>操作</th>
     </tr>`;
     for(let i in data) {
         list += `<tr>
             <td>${Number(i)+1}</td>
             <td class="wxb-common-hover" data-taskid="${data[i].taskid}"  data-index="${i}">${data[i].name}</td>
-            <td data-taskid="${data[i].taskid}">${data[i].sitenum}</td>
-            <td data-taskid="${data[i].taskid}">${data[i].healthnum}</td>
-            <td data-taskid="${data[i].taskid}">${data[i].issuenum}</td>
-            <td data-taskid="${data[i].taskid}">${data[i].badnum}</td>
-            <td data-taskid="${data[i].taskid}">${Math.floor(data[i].badnum * 0.3)}</td>
-            <td class="wxb-common-hover" data-taskid="${data[i].taskid}" data-index="${i}" onclick="deleteTask(event)">删除任务</td>
+            <td data-taskid="${data[i].taskid}">${data[i].pulp}</td>
+            <td data-taskid="${data[i].taskid}">${data[i].terror}</td>
+            <td data-taskid="${data[i].taskid}">${data[i].politician}</td>
+            <td data-taskid="${data[i].taskid}">${data[i].disu}</td>
+            <td class="wxb-common-hover" data-taskid="${data[i].taskid}" data-index="${i}" onclick="">重置默认值</td>
         </tr>`;
     }
 
@@ -110,10 +108,15 @@ document.querySelectorAll('.js-wxb-task-modal-back').forEach(e => e.addEventList
 }));
 
 
+// document.querySelector('#wxb_task_createpanel_addsite').addEventListener('click', (e) => {
+//     let title = document.querySelector('#wxb_task_createpanel_title').value;
+//     let domain = document.querySelector('#wxb_task_createpanel_domain').value;
+//     createTask(title, domain=='' ? []:[domain]);
+// });
+
 document.querySelector('#wxb_task_createpanel_addsite').addEventListener('click', (e) => {
-    let title = document.querySelector('#wxb_task_createpanel_title').value;
-    let domain = document.querySelector('#wxb_task_createpanel_domain').value;
-    createTask(title, domain=='' ? []:[domain]);
+    document.querySelector('#wxb_list_table_container').classList.toggle('component-hidden');
+    document.querySelector('#wxb_task_modal_createpanel').classList.toggle('component-hidden');
 });
 
 function createTask(title, domain) {
@@ -151,14 +154,14 @@ function createTask(title, domain) {
         }
     }
 
-    updateList();
+    // updateList();
     document.querySelector('#wxb_task_createpanel_domain').value = '';
     showDetail(DATA[IND].items);
 }
 
 function deleteTask(event) {
     DATA.splice(event.target.dataset.index, 1);
-    updateList();
+    // updateList();
 }
 
 function updateList() {
@@ -208,15 +211,15 @@ document.querySelector('#wxb_list_applist').addEventListener('click', (e) => {
 
 
 // random increase number
-function autoIncrease() {
-    let ind = Math.ceil(Math.random() * DATA.length);
-    document.querySelectorAll('#wxb_list_table td:nth-of-type(6)').forEach(e => {
-        e.removeAttribute('class');
-    });
-    document.querySelectorAll('#wxb_list_table tr')[ind].children[5].setAttribute('class', 'biggerTrans');
-    document.querySelectorAll('#wxb_list_table tr')[ind].children[5].innerHTML = Number(document.querySelectorAll('#wxb_list_table tr')[ind].children[5].innerHTML) + Math.ceil(Math.random()*10);
-}
-setInterval(autoIncrease, 1000);
+// function autoIncrease() {
+//     let ind = Math.ceil(Math.random() * DATA.length);
+//     document.querySelectorAll('#wxb_list_table td:nth-of-type(6)').forEach(e => {
+//         e.removeAttribute('class');
+//     });
+//     document.querySelectorAll('#wxb_list_table tr')[ind].children[5].setAttribute('class', 'biggerTrans');
+//     document.querySelectorAll('#wxb_list_table tr')[ind].children[5].innerHTML = Number(document.querySelectorAll('#wxb_list_table tr')[ind].children[5].innerHTML) + Math.ceil(Math.random()*10);
+// }
+// setInterval(autoIncrease, 1000);
 
 
 function goTaskDetailPanel(event) {

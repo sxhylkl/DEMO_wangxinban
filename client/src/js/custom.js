@@ -19,9 +19,9 @@ function fillListTable(data) {
     let list = `<tr>
         <th>序号</th>
         <th>任务名称</th>
-        <th>分光还原站点数量</th>
-        <th>问题图片数量</th>
-        <th>问题视频数量</th>
+        <th>数据源</th>
+        <th>疑似图片数量</th>
+        <th>疑似视频数量</th>
         <th>已处置数量</th>
         <th>操作</th>
     </tr>`;
@@ -55,36 +55,6 @@ function showConfig(event) {
     }
 }
 
-// function showDetail(data) {
-//     let tmp = `<tr>
-//                 <th>序号</th>
-//                 <th>监控域名</th>
-//                 <th>创建日期</th>
-//                 <th>状态</th>
-//                 <th>违禁内容</th>
-//                 <th>已处置</th>
-//                 <th>发送通知</th>
-//             </tr>`;
-
-//     data.map((datum,ind) => {
-//         tmp += `<tr>
-//                     <td>${ind+1}</td>
-//                     <td>${datum.domain}</td>
-//                     <td>${datum.create}</td>
-//                     <td>${datum.status}</td>
-//                     <td class="wxb-common-hover" onclick="goTaskDetailPanel(event)">${datum.badnum}</td>
-//                     <td>${Math.floor(datum.badnum*.5)}</td>
-//                     <td class="wxb-common-hover" onclick="alert('报告已生成并发送到相关单位！')">发送</td>
-//                 </tr>`
-//     });
-
-//     // document.querySelector('#wxb_list_detail_title').innerHTML = user + '网站';
-//     document.querySelector('#wxb_task_detail_table').innerHTML = tmp;
-
-//     // document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
-//     // document.querySelector('#wxb_list_detail_container').removeAttribute('class');
-// }
-
 function showDetails(event) {
     document.querySelector('#wxb_list_table_container').setAttribute('class', 'component-hidden');
     document.querySelector('#wxb_task_modal_createpanel').setAttribute('class', 'component-hidden');
@@ -106,13 +76,6 @@ document.querySelectorAll('.js-wxb-task-modal-back').forEach(e => e.addEventList
     document.querySelector('#wxb_task_modal_createpanel').setAttribute('class', 'component-hidden');
     document.querySelector('#wxb_task_modal_detaillist').setAttribute('class', 'component-hidden');
     document.querySelector('#wxb_list_modal_detail_trace').setAttribute('class', 'component-hidden');
-    // if(e.target.dataset['path'] == 1) {
-    //     document.querySelector('#wxb_list_table_container').removeAttribute('class');
-    // } else if (e.target.dataset['path'] == 2) {
-    //     document.querySelector('#wxb_task_modal_createpanel').removeAttribute('class');
-    // } else {
-    //     document.querySelector('#wxb_task_modal_detaillist').removeAttribute('class');
-    // }
 }));
 
 function goTaskDetailPanel(event) {
@@ -183,35 +146,6 @@ document.querySelector('#wxb_list_modal_detail_trace').addEventListener('click',
 document.querySelector('#tracemap').addEventListener('click', (e) => {
     e.stopPropagation();
 });
-
-
-
-// ========= add list modal open ===========
-// document.querySelector('#wxb_task_createpanel_openlist').addEventListener('click', (e) => {
-//     document.querySelectorAll('#wxb_list_modal_addlist input').forEach(e => {
-//         e.checked = false;
-//     });
-//     document.querySelector('#wxb_list_modal_addlist').removeAttribute('class');
-// });
-
-// document.querySelector('#wxb_task_modal_addlist_submit').addEventListener('click', (e) => {
-//     let domain = [];
-//     document.querySelectorAll('#wxb_list_modal_addlist input:checked').forEach(e => {
-//         domain.push(e.parentElement.parentElement.nextSibling.nextSibling.innerText);
-//     });
-//     let title = document.querySelector('#wxb_task_createpanel_title').value;
-//     createTask(title, domain);
-//     document.querySelector('#wxb_list_modal_addlist').setAttribute('class', 'component-hidden');
-// });
-
-// document.querySelector('#wxb_list_modal_addlist').addEventListener('click', (e) => {
-//     document.querySelector('#wxb_list_modal_addlist').setAttribute('class', 'component-hidden');
-// });
-
-// document.querySelector('#wxb_list_applist').addEventListener('click', (e) => {
-//     e.stopPropagation();
-// });
-// ========= add list modal close ===========
 
 
 // random increase number
@@ -322,3 +256,16 @@ function drawTraceMap() {
         myChart.setOption(option, true);
     }
 }
+
+function toggleAddList() {
+    document.querySelector('#wxb_list_modal_addlist').classList.toggle('component-hidden');
+}
+
+ 
+document.querySelector('#wxb_list_modal_addlist').addEventListener('click', (e) => {
+    document.querySelector('#wxb_list_modal_addlist').setAttribute('class', 'component-hidden');
+});
+
+document.querySelector('#wxb_list_applist').addEventListener('click', (e) => {
+    e.stopPropagation();
+});

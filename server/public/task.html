@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>about</title>
+    <title>常规任务设置</title>
     <link rel="stylesheet" href="./stylesheet/common.css">
     <link rel="stylesheet" href="./stylesheet/layout.css">
     <link rel="stylesheet" href="./stylesheet/task.css">
@@ -46,7 +46,7 @@
             </table>
         </div>
         
-        <div id="wxb_task_modal_createpanel" class="component-hidden">
+        <!-- <div id="wxb_task_modal_createpanel" class="component-hidden">
             <p><span class="js-wxb-task-modal-back" data-path="1">返回</span></p>
             <input id="wxb_task_createpanel_title" placeholder="点击修改任务名称"/>
             <fieldset>
@@ -73,6 +73,72 @@
                 <button id="wxb_task_createpanel_addsite" class="btn-success">提交</button>
             </fieldset>
             <table id="wxb_task_detail_table">
+                <tr>
+                    <th>序号</th>
+                    <th>监控APP主站</th>
+                    <th>创建日期</th>
+                    <th>状态</th>
+                    <th>违禁内容</th>
+                    <th>导出报表</th>
+                </tr>
+            </table>
+        </div> -->
+
+        
+        <div id="wxb_task_modal_createpanel" class="component-hidden">
+            <p><span class="js-wxb-task-modal-back" data-path="1">返回</span></p>
+            <input id="wxb_task_createpanel_title" placeholder="点击修改任务名称"/>
+            <fieldset>
+                <legend>新建监控站点</legend>
+                <!-- <div class="wxb_task_createpanel_fs">
+                    <label for=""> APP主站名称：</label>
+                    <input type="text" name="" id="wxb_task_createpanel_domain" />
+                    <button id="wxb_task_createpanel_openlist" class="btn-info">从排行列表中选取</button>
+                </div> -->
+                <div>
+                    <label for="">监控时间段</label>
+                    从 <input type="date" value='2018-08-01' />
+                    到 <input type="date" value='2018-08-31'>
+                </div>
+                <div>
+                    <form id="wxb_task_createpanel_form" oninput="outvalue.value=Number(invalue.value).toFixed(2)">
+                        <label for="">调整鉴黄告警阈值</label>
+                        <output for="wxb_task_createpanel_threshold" name='outvalue' value='0.8'>0.80</output>
+                        <div>
+                            0<input id="wxb_task_createpanel_threshold" type="range" name="invalue" min="0" max="1" step="0.05" value="0.8" />1
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form id="wxb_task_createpanel_form" oninput="outvalue.value=Number(invalue.value).toFixed(2)">
+                        <label for="">调整鉴暴告警阈值</label>
+                        <output for="wxb_task_createpanel_threshold" name='outvalue' value='0.8'>0.80</output>
+                        <div>
+                            0<input id="wxb_task_createpanel_threshold" type="range" name="invalue" min="0" max="1" step="0.05" value="0.8" />1
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form id="wxb_task_createpanel_form" oninput="outvalue.value=Number(invalue.value).toFixed(2)">
+                        <label for="">调整鉴政告警阈值</label>
+                        <output for="wxb_task_createpanel_threshold" name='outvalue' value='0.8'>0.80</output>
+                        <div>
+                            0<input id="wxb_task_createpanel_threshold" type="range" name="invalue" min="0" max="1" step="0.05" value="0.8" />1
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form id="wxb_task_createpanel_form" oninput="outvalue.value=Number(invalue.value).toFixed(2)">
+                        <label for="">调整低俗告警阈值</label>
+                        <output for="wxb_task_createpanel_threshold" name='outvalue' value='0.8'>0.80</output>
+                        <div>
+                            0<input id="wxb_task_createpanel_threshold" type="range" name="invalue" min="0" max="1" step="0.05" value="0.8" />1
+                        </div>
+                    </form>
+                </div>
+                <button id="wxb_task_createpanel_addsite" class="btn-success">提交</button>
+            </fieldset>
+            <table id="wxb_task_detail_table" class="component-hidden">
                 <tr>
                     <th>序号</th>
                     <th>监控APP主站</th>

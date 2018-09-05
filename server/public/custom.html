@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>about</title>
+    <title>特殊任务定制</title>
     <link rel="stylesheet" href="./stylesheet/common.css">
     <link rel="stylesheet" href="./stylesheet/layout.css">
     <link rel="stylesheet" href="./stylesheet/custom.css">
@@ -52,6 +52,16 @@
             <input id="wxb_task_createpanel_title" placeholder="点击修改任务名称"/>
             <fieldset>
                 <legend>自定义任务监控底库</legend>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">添加监控源站：</span>
+                    </div>
+                    <!-- <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"> -->
+                    <div class="custom-file">
+                        <input id="wxb_custom_forbidwords" type="text" class="custom-file-input">
+                        <button class="btn btn-info" type="button" onclick="toggleAddList()">从列表中选择监控源</button>
+                    </div>
+                </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">添加图片底库：</span>
@@ -154,29 +164,13 @@
                         <th>序号</th>
                         <th>APP网站</th>
                     </tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>1</td><td>www.youku.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>2</td><td>v.qq.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>3</td><td>www.iqiyi.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>4</td><td>www.tudou.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>5</td><td>www.panda.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>6</td><td>www.pptv.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>7</td><td>www.bilibili.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>8</td><td>www.56.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>9</td><td>www.6.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>10</td><td>www.mangotv.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>11</td><td>www.storm.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>12</td><td>www.souhu.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>13</td><td>www.sina.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>14</td><td>www.hao123.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>15</td><td>www.letv.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>16</td><td>www.douyin.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>17</td><td>www.huxiu.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>18</td><td>www.douyu.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>19</td><td>www.1644.com</td></tr>
-                    <tr><td><label><input type="checkbox" /></label></td><td>20</td><td>www.acfun.cn</td></tr>
+                    <tr><td><label><input type="checkbox" /></label></td><td>1</td><td>抖音</td></tr>
+                    <tr><td><label><input type="checkbox" /></label></td><td>2</td><td>斗鱼</td></tr>
+                    <tr><td><label><input type="checkbox" /></label></td><td>3</td><td>快手</td></tr>
+                    <tr><td><label><input type="checkbox" /></label></td><td>4</td><td>火山小视频</td></tr>
                 </table>
             </div>
-            <button id="wxb_task_modal_addlist_submit" class="btn-success">确定添加</button>
+            <button id="wxb_task_modal_addlist_submit" class="btn-success" onclick="toggleAddList()">确定添加</button>
         </div>
     </div>
     <script src="./javascript/config.js"></script>

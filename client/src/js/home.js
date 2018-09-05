@@ -6,7 +6,8 @@ window.onload = function() {
     // getList();
     initRightPanelList();
     drawMap();
-    drawPiechart();
+    // drawPiechart();
+    drawPie()
 }
 
 function getList() {
@@ -400,6 +401,88 @@ function drawTraceMap() {
     }
 }
 
+function drawPie() {
+    var dom = document.getElementById("wxb_home_piechart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        backgroundColor: '#2c343c',
+
+        title: {
+            text: '查处问题视频分布',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
+
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                colorLightness: [0, 1]
+            }
+        },
+        series : [
+            {
+                name:'分类信息',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:335, name:'涉政视频'},
+                    {value:310, name:'低俗视频'},
+                    {value:274, name:'恐怖袭击视频'},
+                    {value:235, name:'反华视频'},
+                    {value:400, name:'淫秽视频'}
+                ].sort(function (a, b) { return a.value - b.value; }),
+                roseType: 'radius',
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#c23531',
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+
+                animationType: 'scale',
+                animationEasing: 'elasticOut',
+                animationDelay: function (idx) {
+                    return Math.random() * 200;
+                }
+            }
+        ]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+}
+
 document.querySelector('#wxb_list_modal_detail_trace').addEventListener('click', (e) => {
     document.querySelector('#wxb_list_modal_detail_trace').setAttribute('class', 'component-hidden');
 });
@@ -430,10 +513,10 @@ setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_upt
 setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_uptable tr:nth-of-type(6) td:nth-of-type(3)'));
 setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_uptable tr:nth-of-type(7) td:nth-of-type(3)'));
 
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(2) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(3) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(4) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(5) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(6) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(7) td:nth-of-type(2)'));
-setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(8) td:nth-of-type(2)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(2) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(3) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(4) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(5) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(6) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(7) td:nth-of-type(3)'));
+setInterval(autoIncrease, 1500, document.querySelector('#wxb_home_rightpanel_downtable tr:nth-of-type(8) td:nth-of-type(3)'));
