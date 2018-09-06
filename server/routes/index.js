@@ -68,7 +68,7 @@ tracedata = fs.readFileSync('./public/mockdata/les-miserables.gexf', 'utf-8');
 
 TASKS = [{
   taskid: 1,
-  name: '抖音',
+  name: 'youtube',
   pulp: 0.80,
   terror: 0.70,
   politician: 0.85,
@@ -91,7 +91,7 @@ TASKS = [{
   }]
 },{
   taskid: 2,
-  name: '快手',
+  name: 'twitter',
   pulp: 0.90,
   terror: 0.7,
   politician: 0.85,
@@ -114,7 +114,7 @@ TASKS = [{
   }]
 },{
   taskid: 3,
-  name: '斗鱼',
+  name: 'fackbook',
   pulp: 0.70,
   terror: 0.72,
   politician: 0.85,
@@ -137,7 +137,7 @@ TASKS = [{
   }]
 },{
   taskid: 4,
-  name: '火山小视频',
+  name: 'NetFlix',
   pulp: 0.88,
   terror: 0.7,
   politician: 0.85,

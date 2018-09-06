@@ -22,8 +22,8 @@ function fillListTableApp() {
                     <th>资源扫描完成率</th>
                     <th>命中违禁资源量</th>
                     <th>活跃用户数</th>
-                    <th>应用平台资源健康指数</th>
-                    <th>应用平台用户健康指数</th>
+                    <th>应用平台资源危害指数</th>
+                    <th>应用平台用户危害指数</th>
                     <th>操作</th>
                 </tr>`;
     for(let i in Data_app) {
@@ -35,8 +35,8 @@ function fillListTableApp() {
             <td>${Data_app[i].completerate}</td>
             <td>${Data_app[i].forbidden}</td>
             <td>${Data_app[i].usernum}</td>
-            <td>${Data_app[i].appindex}</td>
-            <td>${Data_app[i].userindex}</td>
+            <td class="${(Data_app[i].appindex > 7)?'wxb-task-index-red':((Data_app[i].appindex < 3)?'wxb-task-index-green':'wxb-task-index-yellow')}">${Data_app[i].appindex}</td>
+            <td class="${(Data_app[i].userindex > 7)?'wxb-task-index-red':((Data_app[i].userindex < 3)?'wxb-task-index-green':'wxb-task-index-yellow')}">${Data_app[i].userindex}</td>
             <td class="wxb-common-hover" data-index="${i}" onclick="alert('报告已生成并发送到相关单位！')">发送通告</td>
         </tr>`;
     }
@@ -151,7 +151,7 @@ function fillListTableUser() {
                     <th>账户设备数</th>
                     <th>账户接入点区域覆盖</th>
                     <th>账户分类</th>
-                    <th>账户监控指数</th>
+                    <th>账户危害指数</th>
                     <th>操作</th>
                 </tr>`;
     for(let i in Data_user) {
@@ -167,7 +167,7 @@ function fillListTableUser() {
             <td>${Data_user[i].device}</td>
             <td>${Data_user[i].city}</td>
             <td>${Data_user[i].type}</td>
-            <td>${Data_user[i].userindex}</td>
+            <td class="${(Data_user[i].userindex > 7)?'wxb-task-index-red':((Data_user[i].userindex < 3)?'wxb-task-index-green':'wxb-task-index-yellow')}">${Data_user[i].userindex}</td>
             <td class="wxb-common-hover" data-index="${i}" onclick="alert('报告已生成并发送到相关单位！')">发送报告</td>
         </tr>`;
     }
@@ -756,10 +756,10 @@ function drawRadar() {
 }
 
 Data_app = [
-    {name: '抖音',      uploadnum: 4215, visitnum: 22255, completerate: '80%', forbidden: 150, usernum: 7500, appindex: 8.2, userindex: 7.6},
-    {name: '快手',      uploadnum: 4225, visitnum: 12255, completerate: '80%', forbidden: 250, usernum: 5200, appindex: 8.3, userindex: 7.3},
-    {name: '斗鱼',      uploadnum: 4325, visitnum: 21155, completerate: '80%', forbidden: 150, usernum: 4500, appindex: 8.1, userindex: 7.1},
-    {name: '火山小视频', uploadnum: 4215, visitnum: 11155, completerate: '80%', forbidden: 90, usernum: 2500, appindex: 8.0, userindex: 7.9}
+    {name: 'youtube',      uploadnum: 4215, visitnum: 22255, completerate: '80%', forbidden: 150, usernum: 7500, appindex: 8.2, userindex: 7.6},
+    {name: 'twitter',      uploadnum: 4225, visitnum: 12255, completerate: '80%', forbidden: 250, usernum: 5200, appindex: 5.3, userindex: 2.3},
+    {name: 'facebook',      uploadnum: 4325, visitnum: 21155, completerate: '80%', forbidden: 150, usernum: 4500, appindex: 2.1, userindex: 5.1},
+    {name: 'NetFlix', uploadnum: 4215, visitnum: 11155, completerate: '80%', forbidden: 90, usernum: 2500, appindex: 7.0, userindex: 3.9}
 ];
 
 Data_app_detail = [
@@ -776,18 +776,18 @@ Data_app_detail = [
 ]
 
 Data_user = [
-    {app: '抖音', name: 'alpha',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '抖音', name: 'beta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '快手', name: 'gamma',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '斗鱼', name: 'delta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '抖音', name: 'epsilon',  uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '快手', name: 'zeta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '斗鱼', name: 'eta',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '斗鱼', name: 'Theta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '抖音', name: 'phi',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '快手', name: 'kappa',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '斗鱼', name: 'lambda',   uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
-    {app: '抖音', name: 'mu',       uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9}
+    {app: 'youtube', name: 'alpha',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.9},
+    {app: 'youtube', name: 'beta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 7.1},
+    {app: 'twitter', name: 'gamma',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 6.7},
+    {app: 'facebook', name: 'delta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 6.5},
+    {app: 'youtube', name: 'epsilon',  uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 5.4},
+    {app: 'twitter', name: 'zeta',     uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 4.1},
+    {app: 'facebook', name: 'eta',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 3.9},
+    {app: 'facebook', name: 'Theta',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 3.9},
+    {app: 'youtube', name: 'phi',      uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 2.9},
+    {app: 'twitter', name: 'kappa',    uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 2.4},
+    {app: 'facebook', name: 'lambda',   uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 1.9},
+    {app: 'youtube', name: 'mu',       uploadnum: 100, uploadissue: 30, visitnum: 300, visitissue: 150, activity: 8.8, device: 6, phonenum: 18612345678, city: '北京', type: '涉黄', userindex: 1}
 ];
 
 Data_events = [

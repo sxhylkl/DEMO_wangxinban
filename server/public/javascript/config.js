@@ -1,4 +1,4 @@
-let APIHOST = 'http://localhost:3000';
+// let APIHOST = 'http://localhost:3000';
 
 if(sessionStorage.islogin == undefined || sessionStorage.islogin != 'true') {
     location.href = '/index.html';
